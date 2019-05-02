@@ -1,36 +1,38 @@
 Attribute VB_Name = "Module1"
 
 ' ----------------------------------------------------------
-' ���t�R�s�[
+' 日付コピー
 '
 ' ----------------------------------------------------------
 Sub Macro1()
-Attribute Macro1.VB_Description = "���t�R�s�["
+Attribute Macro1.VB_Description = "日付コピー"
 Attribute Macro1.VB_ProcData.VB_Invoke_Func = " \n14"
+Const MaxCell As Long = 1048576
+Const StartRange As String = "C2"
 
-    ' �J�n�ʒu�Ɉړ�
+    ' 開始位置に移動
     Range("C2").Select
 
-    ' �����̓Z���̂P��̃Z���Ɉړ�
+    ' 未入力セルの１つ上のセルに移動
     Selection.End(xlDown).Select
 
-    ' TODO: �J�����g�Z�����ŏI�Z����������A���[�v�𔲂���
+    ' TODO: カレントセルが最終セルだったら、ループを抜ける
 
-    ' TODO: �J�����g�Z���̐�Έʒu�擾
-    ' TODO: �J�����g�Z���Ɨׂ�D�Z����I��
+    ' TODO: カレントセルの絶対位置取得
+    ' TODO: カレントセルと隣のDセルを選択
     Range("C89:D89").Select
 
-    ' �R�s�[���f�[�^��ێ�
+    ' コピー元データを保持
     Selection.Copy
 
-    ' TODO: �R�s�[���Z���̂P���̃Z����Έʒu�擾
-    ' TODO: �R�s�[���Z���̂P���̃Z���Ɉړ�
+    ' TODO: コピー元セルの１つ下のセル絶対位置取得
+    ' TODO: コピー元セルの１つ下のセルに移動
     Range("C90").Select
 
-    ' ���̓��͍σZ���܂ŃJ�[�\���ړ�
+    ' 次の入力済セルまでカーソル移動
     Range(Selection, Selection.End(xlDown)).Select
 
-    ' TODO: �R�s�[��Z���̂P��̃Z���Ɉړ�
+    ' TODO: コピー先セルの１つ上のセルに移動
     Range("C90:C100").Select
     ActiveSheet.Paste
 End Sub
