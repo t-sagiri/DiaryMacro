@@ -27,7 +27,7 @@ Const StartRange As String = "C2"
         CurrentRow = Selection.Row
 
         ' カレントセルが最終セルだったら、ループを抜ける
-        If CurrentRow > MaxRow Or CurrentRow => MaxCell Exit Do
+        If CurrentRow > MaxRow Or CurrentRow => MaxCell Then Exit Do
 
         ' TODO: カレントセルの絶対位置取得
         ' TODO: カレントセルと隣のDセルを選択
