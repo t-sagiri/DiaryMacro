@@ -1,14 +1,11 @@
-Attribute VB_Name = "Module1"
+Const MaxCell As Long = 1048576
+Const StartRange As String = "C2"
 
 ' ----------------------------------------------------------
 ' 日付コピー
 '
 ' ----------------------------------------------------------
 Sub Macro1()
-Attribute Macro1.VB_Description = "日付コピー"
-Attribute Macro1.VB_ProcData.VB_Invoke_Func = " \n14"
-Const MaxCell As Long = 1048576
-Const StartRange As String = "C2"
 
     ' 終点セル取得
     With ActiveSheet.UsedRange
