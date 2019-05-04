@@ -30,8 +30,11 @@ Sub Macro1()
         ' 未入力セルの１つ上のセルに移動
         Selection.End(xlDown).Select
 
+        ' 次の入力済みセルLine取得
+        NextRow = Selection.Row
+
         ' コピー先セル位置取得
-        DestRow = Selection.Row - 1
+        DestRow = NextRow - 1
         DestEndCol = Selection.Column + 1
 
         ' コピー元セルと隣のDセルを選択
@@ -46,7 +49,7 @@ Sub Macro1()
         ' コピー先セルの１つ上のセルに移動
         ActiveSheet.Paste
 
-    Loop
+    Loop While NextRow < MaxRow
 End Sub
 
 
