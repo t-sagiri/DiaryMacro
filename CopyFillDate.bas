@@ -2,10 +2,10 @@ Const MaxCell As Long = 1048576
 Const StartRange As String = "C2"
 
 ' ----------------------------------------------------------
-' 日付コピー
+' StartRangeと隣のセルを虫食い行に穴埋めコピーしていく
 '
 ' ----------------------------------------------------------
-Sub Macro1()
+Sub CopyFillDate()
 
     ' 終点セル取得
     With ActiveSheet.UsedRange
@@ -46,20 +46,4 @@ Sub Macro1()
         ActiveSheet.Paste
 
     Loop While NextRow < MaxRow
-End Sub
-
-
-Sub Test1()
-    With ActiveSheet.UsedRange
-        MaxRow = .Rows.Count
-        MaxCol = .Columns.Count
-    End With
-End Sub
-
-Sub Test2()
-    ' C1を選択
-    ' Cells(1, 3).Select
-
-    ' C2:D4を選択
-    Range(Cells(2, 3), Cells(4, 4)).Select
 End Sub
