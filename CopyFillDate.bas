@@ -22,27 +22,28 @@ Sub Macro1()
         ' 未入力セルの１つ上のセルに移動
         Selection.End(xlDown).Select
         CurrentRow = Selection.Row
+        CurrentCol = Selection.Column
 
         ' カレントセルが最終セルだったら、ループを抜ける
-        If CurrentRow > MaxRow Or CurrentRow => MaxCell Then Exit Do
+        If CurrentRow > MaxRow Or CurrentRow >= MaxCell Then Exit Do
 
         ' TODO: カレントセルの絶対位置取得
         ' TODO: カレントセルと隣のDセルを選択
-        Range("C89:D89").Select
+        ' Range(Cell(CurrentRow, CurrentCol)).Select
 
         ' コピー元データを保持
-        Selection.Copy
+        'Selection.Copy
 
         ' TODO: コピー元セルの１つ下のセル絶対位置取得
         ' TODO: コピー元セルの１つ下のセルに移動
-        Range("C90").Select
+        'Range("C90").Select
 
         ' 次の入力済セルまでカーソル移動
-        Range(Selection, Selection.End(xlDown)).Select
+        'Range(Selection, Selection.End(xlDown)).Select
 
         ' TODO: コピー先セルの１つ上のセルに移動
-        Range("C90:C100").Select
-        ActiveSheet.Paste
+        'Range("C90:C100").Select
+        'ActiveSheet.Paste
 
     Loop
 End Sub
