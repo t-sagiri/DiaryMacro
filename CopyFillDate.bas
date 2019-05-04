@@ -1,36 +1,49 @@
-Attribute VB_Name = "Module1"
+Const MaxCell As Long = 1048576
+Const StartRange As String = "C2"
 
 ' ----------------------------------------------------------
-' “ú•tƒRƒs[
+' StartRangeã¨éš£ã®ã‚»ãƒ«ã‚’è™«é£Ÿã„è¡Œã«ç©´åŸ‹ã‚ã‚³ãƒ”ãƒ¼ã—ã¦ã„ã
 '
 ' ----------------------------------------------------------
-Sub Macro1()
-Attribute Macro1.VB_Description = "“ú•tƒRƒs["
-Attribute Macro1.VB_ProcData.VB_Invoke_Func = " \n14"
+Sub CopyFillDate()
 
-    ' ŠJnˆÊ’u‚ÉˆÚ“®
-    Range("C2").Select
+    ' çµ‚ç‚¹ã‚»ãƒ«å–å¾—
+    With ActiveSheet.UsedRange
+        MaxRow = .Rows.Count
+    End With
 
-    ' –¢“ü—ÍƒZƒ‹‚Ì‚P‚Âã‚ÌƒZƒ‹‚ÉˆÚ“®
-    Selection.End(xlDown).Select
+    ' é–‹å§‹ä½ç½®ã«ç§»å‹•
+    Range(StartRange).Select
 
-    ' TODO: ƒJƒŒƒ“ƒgƒZƒ‹‚ªÅIƒZƒ‹‚¾‚Á‚½‚çAƒ‹[ƒv‚ğ”²‚¯‚é
+    Do
+        ' æœªå…¥åŠ›ã‚»ãƒ«ã®ï¼‘ã¤ä¸Šã®ã‚»ãƒ«ã«ç§»å‹•
+        Selection.End(xlDown).Select
 
-    ' TODO: ƒJƒŒƒ“ƒgƒZƒ‹‚Ìâ‘ÎˆÊ’uæ“¾
-    ' TODO: ƒJƒŒƒ“ƒgƒZƒ‹‚Æ—×‚ÌDƒZƒ‹‚ğ‘I‘ğ
-    Range("C89:D89").Select
+        ' ã‚³ãƒ”ãƒ¼å…ƒã‚»ãƒ«ä½ç½®å–å¾—
+        SourceRow = Selection.Row
+        SourceCol = Selection.Column
 
-    ' ƒRƒs[Œ³ƒf[ƒ^‚ğ•Û
-    Selection.Copy
+        ' æœªå…¥åŠ›ã‚»ãƒ«ã®ï¼‘ã¤ä¸Šã®ã‚»ãƒ«ã«ç§»å‹•
+        Selection.End(xlDown).Select
 
-    ' TODO: ƒRƒs[Œ³ƒZƒ‹‚Ì‚P‚Â‰º‚ÌƒZƒ‹â‘ÎˆÊ’uæ“¾
-    ' TODO: ƒRƒs[Œ³ƒZƒ‹‚Ì‚P‚Â‰º‚ÌƒZƒ‹‚ÉˆÚ“®
-    Range("C90").Select
+        ' æ¬¡ã®å…¥åŠ›æ¸ˆã¿ã‚»ãƒ«Lineå–å¾—
+        NextRow = Selection.Row
 
-    ' Ÿ‚Ì“ü—ÍÏƒZƒ‹‚Ü‚ÅƒJ[ƒ\ƒ‹ˆÚ“®
-    Range(Selection, Selection.End(xlDown)).Select
+        ' ã‚³ãƒ”ãƒ¼å…ˆã‚»ãƒ«ä½ç½®å–å¾—
+        DestRow = NextRow - 1
+        DestEndCol = Selection.Column + 1
 
-    ' TODO: ƒRƒs[æƒZƒ‹‚Ì‚P‚Âã‚ÌƒZƒ‹‚ÉˆÚ“®
-    Range("C90:C100").Select
-    ActiveSheet.Paste
+        ' ã‚³ãƒ”ãƒ¼å…ƒã‚»ãƒ«ã¨éš£ã®Dã‚»ãƒ«ã‚’é¸æŠ
+        Range(Cells(SourceRow, SourceCol), Cells(SourceRow, SourceCol + 1)).Select
+
+        ' ã‚³ãƒ”ãƒ¼å…ƒãƒ‡ãƒ¼ã‚¿ã‚’ä¿æŒ
+        Selection.Copy
+
+        ' æ¬¡ã®å…¥åŠ›æ¸ˆã‚»ãƒ«ã¾ã§ã‚«ãƒ¼ã‚½ãƒ«ç§»å‹•
+        Range(Cells(SourceRow + 1, SourceCol), Cells(DestRow, DestEndCol)).Select
+
+        ' ã‚³ãƒ”ãƒ¼å…ˆã‚»ãƒ«ã®ï¼‘ã¤ä¸Šã®ã‚»ãƒ«ã«ç§»å‹•
+        ActiveSheet.Paste
+
+    Loop While NextRow < MaxRow
 End Sub
