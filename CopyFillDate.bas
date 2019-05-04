@@ -21,15 +21,16 @@ Sub Macro1()
 
         ' 未入力セルの１つ上のセルに移動
         Selection.End(xlDown).Select
+
+        ' カレントセルの絶対位置取得
         CurrentRow = Selection.Row
         CurrentCol = Selection.Column
 
         ' カレントセルが最終セルだったら、ループを抜ける
         If CurrentRow > MaxRow Or CurrentRow >= MaxCell Then Exit Do
 
-        ' TODO: カレントセルの絶対位置取得
-        ' TODO: カレントセルと隣のDセルを選択
-        ' Range(Cell(CurrentRow, CurrentCol)).Select
+        ' カレントセルと隣のDセルを選択
+        Range(Cells(CurrentRow, CurrentCol), Cells(CurrentRow, CurrentCol + 1)).Select
 
         ' コピー元データを保持
         'Selection.Copy
