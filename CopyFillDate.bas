@@ -17,8 +17,6 @@ Sub Macro1()
     Range(StartRange).Select
 
     Do
-        Dim SourceRow As Long
-
         ' 未入力セルの１つ上のセルに移動
         Selection.End(xlDown).Select
 
@@ -29,22 +27,24 @@ Sub Macro1()
         ' コピー元セルが最終セルだったら、ループを抜ける
         If SourceRow > MaxRow Or SourceRow >= MaxCell Then Exit Do
 
+        ' 未入力セルの１つ上のセルに移動
+        Selection.End(xlDown).Select
+
+        ' コピー先セル位置取得
+        DestRow = Selection.Row - 1
+        DestEndCol = Selection.Column + 1
+
         ' コピー元セルと隣のDセルを選択
         Range(Cells(SourceRow, SourceCol), Cells(SourceRow, SourceCol + 1)).Select
 
         ' コピー元データを保持
-        'Selection.Copy
-
-        ' TODO: コピー元セルの１つ下のセル絶対位置取得
-        ' TODO: コピー元セルの１つ下のセルに移動
-        'Range("C90").Select
+        Selection.Copy
 
         ' 次の入力済セルまでカーソル移動
-        'Range(Selection, Selection.End(xlDown)).Select
+        Range(Cells(SourceRow + 1, SourceCol), Cells(DestRow, DestEndCol)).Select
 
-        ' TODO: コピー先セルの１つ上のセルに移動
-        'Range("C90:C100").Select
-        'ActiveSheet.Paste
+        ' コピー先セルの１つ上のセルに移動
+        ActiveSheet.Paste
 
     Loop
 End Sub
