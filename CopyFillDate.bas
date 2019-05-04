@@ -10,7 +10,6 @@ Sub Macro1()
     ' 終点セル取得
     With ActiveSheet.UsedRange
         MaxRow = .Rows.Count
-        MaxCol = .Columns.Count
     End With
 
     ' 開始位置に移動
@@ -23,9 +22,6 @@ Sub Macro1()
         ' コピー元セル位置取得
         SourceRow = Selection.Row
         SourceCol = Selection.Column
-
-        ' コピー元セルが最終セルだったら、ループを抜ける
-        If SourceRow > MaxRow Or SourceRow >= MaxCell Then Exit Do
 
         ' 未入力セルの１つ上のセルに移動
         Selection.End(xlDown).Select
