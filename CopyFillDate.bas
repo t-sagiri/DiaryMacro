@@ -46,3 +46,19 @@ Sub Macro1()
 
     Loop
 End Sub
+
+
+Sub Test1()
+    With ActiveSheet.UsedRange
+        MaxRow = .Rows.Count
+        MaxCol = .Columns.Count
+    End With
+End Sub
+
+Sub Test2()
+    ' C1を選択
+    ' Cells(1, 3).Select
+
+    ' C2:D4を選択
+    Range(Cells(2, 3), Cells(4, 4)).Select
+End Sub
