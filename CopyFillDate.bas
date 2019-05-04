@@ -17,20 +17,20 @@ Sub Macro1()
     Range(StartRange).Select
 
     Do
-        Dim CurrentRow As Long
+        Dim SourceRow As Long
 
         ' 未入力セルの１つ上のセルに移動
         Selection.End(xlDown).Select
 
-        ' カレントセルの絶対位置取得
-        CurrentRow = Selection.Row
-        CurrentCol = Selection.Column
+        ' コピー元セル位置取得
+        SourceRow = Selection.Row
+        SourceCol = Selection.Column
 
-        ' カレントセルが最終セルだったら、ループを抜ける
-        If CurrentRow > MaxRow Or CurrentRow >= MaxCell Then Exit Do
+        ' コピー元セルが最終セルだったら、ループを抜ける
+        If SourceRow > MaxRow Or SourceRow >= MaxCell Then Exit Do
 
-        ' カレントセルと隣のDセルを選択
-        Range(Cells(CurrentRow, CurrentCol), Cells(CurrentRow, CurrentCol + 1)).Select
+        ' コピー元セルと隣のDセルを選択
+        Range(Cells(SourceRow, SourceCol), Cells(SourceRow, SourceCol + 1)).Select
 
         ' コピー元データを保持
         'Selection.Copy
